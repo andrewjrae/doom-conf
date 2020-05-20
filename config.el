@@ -61,16 +61,16 @@
   (map! :map org-mode-map
         :n "M-j" #'org-metadown
         :n "M-k" #'org-metaup))
-
-(add-to-list 'org-latex-classes
-           '("ece380-report"
-              "\\documentclass[oneside, 12pt]{memoir}"
-              ("\\chapter{%s}" . "\\chapter*{%s}")
-              ("\\section{%s}" . "\\section*{%s}")
-              ("\\subsection{%s}" . "\\subsection*{%s}")
-              ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
-              ("\\paragraph{%s}" . "\\paragraph*{%s}")
-              ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+(with-eval-after-load 'ox-latex
+  (add-to-list 'org-latex-classes
+            '("ece380-report"
+                "\\documentclass[oneside, 12pt]{memoir}"
+                ("\\chapter{%s}" . "\\chapter*{%s}")
+                ("\\section{%s}" . "\\section*{%s}")
+                ("\\subsection{%s}" . "\\subsection*{%s}")
+                ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+                ("\\paragraph{%s}" . "\\paragraph*{%s}")
+                ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))))
 
 ;; adds Ctrl-S for saving / exiting vim modes, cause I just can't break that habit ;)
 (map! :n "C-s" #'save-buffer
