@@ -53,14 +53,15 @@
 ;; they are implemented.
 
 ;; Org-mode related patches
-;; make inline images a reasonable size in org-mode
-(setq org-image-actual-width 400)
 
 ;; makes org a little more vim like (no arrow keys required)
 (after! org
   (map! :map org-mode-map
         :n "M-j" #'org-metadown
-        :n "M-k" #'org-metaup))
+        :n "M-k" #'org-metaup)
+  ;; make inline images a reasonable size in org-mode
+  (setq org-image-actual-width 400))
+;; ece380 report class, mostly to get chapters working
 (with-eval-after-load 'ox-latex
   (add-to-list 'org-latex-classes
             '("ece380-report"
