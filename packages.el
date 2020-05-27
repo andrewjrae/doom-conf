@@ -54,3 +54,7 @@
   (package! lsp-ui)
   (package! company-lsp)
   (package! dap-mode))
+
+; (when (featurep! :lang java)
+;   (package! dap-java
+;     :after lsp-java))

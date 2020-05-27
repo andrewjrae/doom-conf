@@ -87,13 +87,17 @@
 (setq auth-sources '("~/.authinfo.gpg" "~/.authinfo" "/home/ajrae/.emacs.d/.local/etc/.authoinfo.gpg"))
 
 ;; LSP-Java support
+;; override java command to enable assertions all the time
 (when (featurep! :lang java)
-  (after! cc-mode
-    (add-hook! java-mode #'lsp))
-  (use-package dap-mode
-    :ensure t :after lsp-mode
-    :config
-    (dap-mode t)
-    (dap-ui-mode t))
-  (use-package! dap-java
-    :after lsp-java))
+  (defcustom dap-java-java-command "java -ea"
+    "Path of the java executable."
+    :group 'dap-java
+    :type 'string))
+
+;; User customization for Verilog mode
+(setq verilog-indent-level             2
+      verilog-indent-level-module      2
+      verilog-indent-level-declaration 2
+      verilog-indent-level-behavioral  2
+      verilog-indent-level-directive   1
+      )
