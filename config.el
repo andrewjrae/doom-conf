@@ -71,7 +71,7 @@
                 ("\\subsection{%s}" . "\\subsection*{%s}")
                 ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
                 ("\\paragraph{%s}" . "\\paragraph*{%s}")
-                ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))))
+                ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))))
 
 
 ;; Adds Ctrl-S for saving / exiting vim modes, cause I just can't break that habit ;)
