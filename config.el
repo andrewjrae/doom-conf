@@ -77,6 +77,19 @@
 ;; Adds Ctrl-S for saving / exiting vim modes, cause I just can't break that habit ;)
 (map! :n "C-s" #'save-buffer
       :ivr "C-s" (lambda () (interactive) (evil-normal-state) (save-buffer)))
+;; Better search and replace
+(map! :leader
+      :desc "Search and replace" "s r" 'query-replace-regexp)
+;; Remapping the old SPC-s-r
+(map! :leader
+      :desc "Jump to mark" "s m" 'counsel-mark-ring)
+(map! :leader
+      :desc "Jump to bookmark" "s M" 'bookmark-jump)
+;; Better switching between workspaces
+(map! :leader
+      :desc "Switch to last workspace" "TAB l" #'+workspace/other)
+(map! :leader
+      :desc "Load workspace from file" "TAB L" #'+workspace/other)
 
 ;; Make movement keys work on visual lines
 (define-key evil-normal-state-map (kbd "<remap> <evil-next-line>") 'evil-next-visual-line)
