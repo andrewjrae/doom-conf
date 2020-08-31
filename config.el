@@ -54,13 +54,13 @@
 
 ;; Org-mode related patches
 
-;; makes org a little more vim like (no arrow keys required)
+;; Makes org a little more vim like (no arrow keys required)
 (after! org
   (map! :map org-mode-map
         :n "M-j" #'org-metadown
         :n "M-k" #'org-metaup)
-  ;; make inline images a reasonable size in org-mode
-  (setq org-image-actual-width 400))
+  ;; Make inline images a reasonable size in org-mode
+  (setq org-image-actual-width 400)
 ;; ece380 report class, mostly to get chapters working
 (with-eval-after-load 'ox-latex
   (add-to-list 'org-latex-classes
@@ -73,7 +73,8 @@
                 ("\\paragraph{%s}" . "\\paragraph*{%s}")
                 ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))))
 
-;; adds Ctrl-S for saving / exiting vim modes, cause I just can't break that habit ;)
+
+;; Adds Ctrl-S for saving / exiting vim modes, cause I just can't break that habit ;)
 (map! :n "C-s" #'save-buffer
       :ivr "C-s" (lambda () (interactive) (evil-normal-state) (save-buffer)))
 
