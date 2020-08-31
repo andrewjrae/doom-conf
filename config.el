@@ -117,3 +117,12 @@
       verilog-case-indent              2
       verilog-auto-newline             nil
       )
+
+;; Theme
+(setq doom-theme 'doom-one)
+
+;; Make flycheck slow things down less
+(after! flycheck
+  (setq flycheck-check-syntax-automatically '(save idle-change mode-enabled))
+  (setq flycheck-idle-change-delay 2)
+  )
