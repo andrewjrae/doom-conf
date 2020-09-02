@@ -7,7 +7,7 @@
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email
 ;; clients, file templates and snippets.
 (setq user-full-name "Andrew Rae"
-      user-mail-address "ajrae.nv@gmail.com")
+      user-mail-address "andrewr@sidefx.com")
 
 ;; Doom exposes five (optional) variables for controlling fonts in Doom. Here
 ;; are the three important ones:
@@ -60,18 +60,7 @@
         :n "M-j" #'org-metadown
         :n "M-k" #'org-metaup)
   ;; Make inline images a reasonable size in org-mode
-  (setq org-image-actual-width 400)
-;; ece380 report class, mostly to get chapters working
-(with-eval-after-load 'ox-latex
-  (add-to-list 'org-latex-classes
-            '("ece380-report"
-                "\\documentclass[oneside, 12pt]{memoir}"
-                ("\\chapter{%s}" . "\\chapter*{%s}")
-                ("\\section{%s}" . "\\section*{%s}")
-                ("\\subsection{%s}" . "\\subsection*{%s}")
-                ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
-                ("\\paragraph{%s}" . "\\paragraph*{%s}")
-                ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))))
+  (setq org-image-actual-width 400))
 
 
 ;; Adds Ctrl-S for saving / exiting vim modes, cause I just can't break that habit ;)
@@ -97,32 +86,14 @@
 (define-key evil-motion-state-map (kbd "<remap> <evil-next-line>") 'evil-next-visual-line)
 (define-key evil-motion-state-map (kbd "<remap> <evil-previous-line>") 'evil-previous-visual-line)
 
-;; Poorly secured ghub tokens
-(setq auth-sources '("~/.authinfo.gpg" "~/.authinfo" "/home/ajrae/.emacs.d/.local/etc/.authoinfo.gpg"))
-
-;; LSP-Java support
-;; override java command to enable assertions all the time
-(when (featurep! :lang java)
-  (defcustom dap-java-java-command "java -ea"
-    "Path of the java executable."
-    :group 'dap-java
-    :type 'string))
-
-;; User customization for Verilog mode
-(setq verilog-indent-level             2
-      verilog-indent-level-module      2
-      verilog-indent-level-declaration 2
-      verilog-indent-level-behavioral  2
-      verilog-indent-level-directive   2
-      verilog-case-indent              2
-      verilog-auto-newline             nil
-      )
-
-;; Theme
-(setq doom-theme 'doom-one)
-
 ;; Make flycheck slow things down less
 (after! flycheck
   (setq flycheck-check-syntax-automatically '(save idle-change mode-enabled))
   (setq flycheck-idle-change-delay 2)
   )
+
+;; SideFX syntax
+(add-hook! 'c++-mode-hook
+        (setq tab-width 8))
+(add-hook! 'c-mode-hook
+        (setq tab-width 8))

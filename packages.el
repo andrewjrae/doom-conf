@@ -49,6 +49,7 @@
 (package! evil-easymotion)
 (package! evil-commentary)
 (package! evil-indent-plus)
+(package! psvn)
 
 (when (featurep! :tools lsp)
   (package! lsp-ui)
