@@ -52,8 +52,10 @@
 ;; You can also try 'gd' (or 'C-c g d') to jump to their definition and see how
 ;; they are implemented.
 
-;; Org-mode related patches
+;; Load bindings
+(load! "+bindings")
 
+;; Org-mode related patches
 ;; Makes org a little more vim like (no arrow keys required)
 (after! org
   (map! :map org-mode-map
@@ -62,38 +64,15 @@
   ;; Make inline images a reasonable size in org-mode
   (setq org-image-actual-width 400))
 
-
-;; Adds Ctrl-S for saving / exiting vim modes, cause I just can't break that habit ;)
-(map! :n "C-s" #'save-buffer
-      :ivr "C-s" (lambda () (interactive) (evil-normal-state) (save-buffer)))
-;; Better search and replace
-(map! :leader
-      :desc "Search and replace" "s r" 'query-replace-regexp)
-;; Remapping the old SPC-s-r
-(map! :leader
-      :desc "Jump to mark" "s m" 'counsel-mark-ring)
-(map! :leader
-      :desc "Jump to bookmark" "s M" 'bookmark-jump)
-;; Better switching between workspaces
-(map! :leader
-      :desc "Switch to last workspace" "TAB l" #'+workspace/other)
-(map! :leader
-      :desc "Load workspace from file" "TAB L" #'+workspace/other)
-
-;; Make movement keys work on visual lines
-(define-key evil-normal-state-map (kbd "<remap> <evil-next-line>") 'evil-next-visual-line)
-(define-key evil-normal-state-map (kbd "<remap> <evil-previous-line>") 'evil-previous-visual-line)
-(define-key evil-motion-state-map (kbd "<remap> <evil-next-line>") 'evil-next-visual-line)
-(define-key evil-motion-state-map (kbd "<remap> <evil-previous-line>") 'evil-previous-visual-line)
-
 ;; Make flycheck slow things down less
 (after! flycheck
   (setq flycheck-check-syntax-automatically '(save idle-change mode-enabled))
   (setq flycheck-idle-change-delay 2)
   )
 
-;; SideFX syntax
-(add-hook! 'c++-mode-hook
-        (setq tab-width 8))
-(add-hook! 'c-mode-hook
-        (setq tab-width 8))
+(require 'dap-cpptools)
+
+(setq! evil-ex-substitute-global t)
+
+;; Load sidefx config
+(load! "+sidefx")
