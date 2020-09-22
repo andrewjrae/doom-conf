@@ -29,9 +29,13 @@
   :global t
   :require 'dap-ui)
 
-(require 'xclip)
-;; xclip mode seems to slow down pasting so just leave it off by default
-;; (xclip-mode 1)
+;; lsp-mode to server
+(after! lsp-mode
+  (lsp-register-client
+   (make-lsp-client :new-connection (lsp-tramp-connection "ccls")
+                    :major-modes '(c++-mode c-mode cc-mode)
+                    :remote? t
+                    :server-id 'ccls-remote)))
 
 ;; TODO: figure out how to do this properly
 ;; (dap-register-debug-template
