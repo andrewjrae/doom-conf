@@ -30,7 +30,8 @@
   :require 'dap-ui)
 
 (require 'xclip)
-(xclip-mode 1)
+;; xclip mode seems to slow down pasting so just leave it off by default
+;; (xclip-mode 1)
 
 ;; TODO: figure out how to do this properly
 ;; (dap-register-debug-template
