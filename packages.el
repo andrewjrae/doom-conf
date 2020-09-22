@@ -52,6 +52,10 @@
 (package! xclip)
 (package! psvn)
 (package! vfl-mode :recipe (:local-repo "vfl-mode"))
+(package! usda-mode :recipe
+  (:host github
+   :repo "superfunc/usda-syntax"
+   :files ("emacs/usda-syntax.el")))
 
 (when (featurep! :tools lsp)
   (package! lsp-ui)
