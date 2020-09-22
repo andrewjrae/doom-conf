@@ -64,6 +64,9 @@
   ;; Make inline images a reasonable size in org-mode
   (setq org-image-actual-width 400))
 
+;; Poorly secured ghub tokens
+(setq auth-sources '("~/.authinfo.gpg" "~/.authinfo" "/home/ajrae/.emacs.d/.local/etc/.authoinfo.gpg"))
+
 ;; Make flycheck slow things down less
 (after! flycheck
   (setq flycheck-check-syntax-automatically '(save idle-change mode-enabled))
@@ -76,3 +79,13 @@
 
 ;; Load sidefx config
 (load! "+sidefx")
+
+;; User customization for Verilog mode
+(setq verilog-indent-level             2
+      verilog-indent-level-module      2
+      verilog-indent-level-declaration 2
+      verilog-indent-level-behavioral  2
+      verilog-indent-level-directive   2
+      verilog-case-indent              2
+      verilog-auto-newline             nil
+      )
