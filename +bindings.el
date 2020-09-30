@@ -18,6 +18,13 @@
       :desc "Switch to last workspace" "TAB l" #'+workspace/other)
 (map! :leader
       :desc "Load workspace from file" "TAB L" #'+workspace/other)
+;; Drag text with meta (for some reason evil didn't cover this)
+(map! :n "M-h" #'drag-stuff-left
+      :n "M-j" #'drag-stuff-down
+      :n "M-k" #'drag-stuff-up
+      :n "M-l" #'drag-stuff-right
+      ;; Replace the old M-j
+      :n "C-j" #'newline-and-indent)
 
 ;; Make movement keys work on visual lines
 (define-key evil-normal-state-map (kbd "<remap> <evil-next-line>") 'evil-next-visual-line)
