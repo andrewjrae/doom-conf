@@ -7,7 +7,7 @@
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email
 ;; clients, file templates and snippets.
 (setq user-full-name "Andrew Rae"
-      user-mail-address "andrewr@sidefx.com")
+      user-mail-address "ajrae.nv@gmail.com")
 
 ;; Doom exposes five (optional) variables for controlling fonts in Doom. Here
 ;; are the three important ones:
@@ -74,5 +74,7 @@
 
 (setq! evil-ex-substitute-global t)
 
-;; Load sidefx config
-(load! "+sidefx")
+(add-hook! 'c-mode-common-hook
+  (setq c-tab-always-indent nil)
+  (map! :leader
+        :desc "Toggle between header and source file" "b o" 'ff-find-other-file))

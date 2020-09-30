@@ -49,10 +49,6 @@
 (package! evil-easymotion)
 (package! evil-commentary)
 (package! evil-indent-plus)
-(package! xclip)
-(package! psvn)
-(package! vfl-mode :recipe (:local-repo "vfl-mode"))
-(package! usda-mode :recipe (:local-repo "usda-mode"))
 
 (when (featurep! :tools lsp)
   (package! lsp-ui)
