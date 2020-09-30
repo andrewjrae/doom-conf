@@ -14,13 +14,14 @@
       :desc "View project diff with version control" "p v" 'vc-root-diff)
 
 ;; Basic syntax highlighting for VEX
-(require 'vfl-mode)
-(add-hook! 'vfl-mode-hook
-  (unsetq-hook! 'after-change-major-mode-hook evil-shift-width)
-  (setq tab-width 8)
-  (setq evil-shift-width 4))
-
-(remove-hook! 'dap-ui-mode-hook #'dap-ui-controls-mode)
+;; (require 'vfl-mode)
+(use-package! vfl-mode
+  :init
+  (add-to-list 'auto-mode-alist '("\\.vfl\\'" . vfl-mode))
+  (add-hook! 'vfl-mode-hook
+    (unsetq-hook! 'after-change-major-mode-hook evil-shift-width)
+    (setq tab-width 8)
+    (setq evil-shift-width 4)))
 
 ;; HACK: super ghetto disabling of dap-ui-controls-mode for TUI use
 (define-minor-mode dap-ui-controls-mode
