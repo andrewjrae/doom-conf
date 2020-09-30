@@ -30,6 +30,10 @@
   :global t
   :require 'dap-ui)
 
+(use-package! usda-mode
+  :init
+  (add-to-list 'auto-mode-alist '("\\.usda\\'" . usda-mode)))
+
 (require 'xclip)
 ;; xclip mode seems to slow down pasting so just leave it off by default
 ;; (xclip-mode 1)
