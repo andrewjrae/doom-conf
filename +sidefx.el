@@ -7,6 +7,7 @@
   (setq c-tab-always-indent nil)
   (setq evil-shift-width 4)
   (map! :leader
+        ;; :desc "Compile" "c c" '(shell-command "mi")
         :desc "Toggle between header and source file" "b o" 'ff-find-other-file))
 
 ;; Shortcut for project wide diff
@@ -29,6 +30,9 @@
   :init-value nil
   :global t
   :require 'dap-ui)
+;; less hack solution to disabling dap-ui-controls-mode but it doesn't fully work
+(after! dap-mode
+  (setq dap-auto-configure-features (remove 'controls dap-auto-configure-features)))
 
 (use-package! usda-mode
   :init
@@ -37,16 +41,3 @@
 (require 'xclip)
 ;; xclip mode seems to slow down pasting so just leave it off by default
 ;; (xclip-mode 1)
-
-;; TODO: figure out how to do this properly
-;; (dap-register-debug-template
-;;   "cpptools::karma"
-;;   (list :type "cppdbg"
-;;         :request "launch"
-;;         :name "cpptools::karma"
-;;         :MIMode "gdb"
-;;         :args (list "proc/test.usda" "-r" "200" "200")
-;;         :program "/home/andrewr/dev/hfs/bin/karma"
-;;         :visualizerFile "/home/andrewr/dev/src/admin/nt/sesi.natvis"
-;;         :showDisplayString t
-;;         :cwd "/home/andrewr/dev_reg/src/tests/karma"))
