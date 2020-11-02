@@ -10,7 +10,7 @@
       :desc "Search and replace" "s r" #'query-replace-regexp)
 ;; Remapping the old SPC-s-r
 (map! :leader
-      :desc "Jump to mark" "s m" #'counsel-mark-ring)
+      :desc "Jump to mark" "s m" #'counsel-evil-marks)
 (map! :leader
       :desc "Jump to bookmark" "s M" #'bookmark-jump)
 ;; Better switching between workspaces
