@@ -100,5 +100,11 @@
   (define-key evil-inner-text-objects-map "q" 'my-evil-textobj-anyblock-inner-quote)
   (define-key evil-outer-text-objects-map "q" 'my-evil-textobj-anyblock-a-quote))
 
+  (setq counsel-rg-base-command
+        "rg -M 240 --with-filename --no-heading --line-number --color never %s")
+(after! counsel
+  (setq counsel-rg-base-command
+        "rg -M 240 --with-filename --no-heading --line-number --color never %s"))
+
 ;; Load sidefx config
 (load! "+sidefx")

@@ -24,7 +24,10 @@
       :n "M-k" #'drag-stuff-up
       :n "M-l" #'drag-stuff-right
       ;; Replace the old M-j
-      :n "C-j" #'newline-and-indent)
+      :n "C-j" #'newline-and-indent
+      ;; ccls was overriting this bind so fix that here
+      (:map (c-mode-map cpp-mode-map)
+       :n "C-j" #'newline-and-indent))
 
 ;; Make movement keys work on visual lines
 (define-key evil-normal-state-map (kbd "<remap> <evil-next-line>") 'evil-next-visual-line)

@@ -25,11 +25,11 @@
     (setq evil-shift-width 4)))
 
 ;; HACK: super ghetto disabling of dap-ui-controls-mode for TUI use
-(define-minor-mode dap-ui-controls-mode
-  "Displaying DAP visuals."
-  :init-value nil
-  :global t
-  :require 'dap-ui)
+;; (define-minor-mode dap-ui-controls-mode
+;;   "Displaying DAP visuals."
+;;   :init-value nil
+;;   :global t
+;;   :require 'dap-ui)
 ;; less hack solution to disabling dap-ui-controls-mode but it doesn't fully work
 (after! dap-mode
   (setq dap-auto-configure-features (remove 'controls dap-auto-configure-features)))
