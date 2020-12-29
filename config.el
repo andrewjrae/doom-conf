@@ -72,6 +72,7 @@
   (setq flycheck-idle-change-delay 2))
 
 (require 'dap-cpptools)
+(require 'company-lsp)
 
 (setq! evil-ex-substitute-global t)
 

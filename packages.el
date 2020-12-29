@@ -49,3 +49,11 @@
 (package! evil-easymotion)
 (package! evil-commentary)
 (package! evil-indent-plus)
+(when (featurep! :tools lsp)
+  (package! lsp-ui)
+  (package! company-lsp))
+  ;; (package! dap-mode :recipe
+  ;;   (:host github
+  ;;    :repo "emacs-lsp/dap-mode"
+  ;;    :branch "master")
+  ;;   :pin "b54b4d56b0549f8a67b205b165fd039872c80733"))
