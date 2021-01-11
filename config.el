@@ -57,6 +57,8 @@
 
 ;; Load bindings
 (load! "+bindings")
+;; Load git hidden secrets
+(load! "+secrets")
 
 ;; Org-mode related patches
 ;; Makes org a little more vim like (no arrow keys required)
@@ -75,6 +77,9 @@
 
 (require 'dap-cpptools)
 (require 'company-lsp)
+
+;; Spotify controller
+(require 'spotify)
 
 (setq! evil-ex-substitute-global t)
 

@@ -42,7 +42,7 @@
          :desc "Hydra" "h" #'dap-hydra
          :desc "Continue" "c" #'dap-continue
          :desc "Restart" "r" #'dap-debug-restart
-         (:prefix-map ("e" . "evaluate")
+         (:prefix-map ("e" . "dap-evaluate")
           :desc "Evaluate" "e" #'dap-eval
           :desc "Evaluate region" "r" #'dap-eval-region
           :desc "Evaluate at point" "i" #'dap-eval-thing-at-point)
@@ -50,4 +50,20 @@
          :desc "Remove watch" "D" #'dap-ui-expressions-remove
          :desc "Edit template" "t" #'dap-debug-edit-template
          :desc "List breakpoints" "l" #'dap-hydra/dap-ui-breakpoints
+         :desc "Toggle breakpoint" "b" #'dap-breakpoint-toggle)))
+
+;; Spotify bindings
+(after! spotify
+  (map! :leader
+        (:prefix-map ("j" . "jams")
+         :desc "Toggle play" "j" #'spotify-toggle-play
+         :desc "My playlists" "p" #'spotify-my-playlists
+         :desc "Select device" "d" #'spotify-select-device
+         (:prefix-map ("t" . "spotify-toggle")
+          :desc "Toggle shuffle" "s" #'spotify-toggle-shuffle
+          :desc "Toggle play" "p" #'spotify-toggle-play
+          :desc "Toggle repeat" "r" #'spotify-toggle-repeat)
+         (:prefix-map ("s" . "spotify-search")
+          :desc "Search for song" "s" #'spotify-track-search
+          :desc "Search for playlist" "p" #'spotify-playlist-search)
          :desc "Toggle breakpoint" "b" #'dap-breakpoint-toggle)))
