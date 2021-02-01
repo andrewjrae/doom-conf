@@ -49,9 +49,14 @@
 (package! evil-easymotion)
 (package! evil-commentary)
 (package! evil-indent-plus)
+
+;; (package! ox-latex)
+
 (when (featurep! :tools lsp)
   (package! lsp-ui)
   (package! company-lsp))
+
+;; Spotify
 (package! oauth2)
 (package! spotify
   :recipe (:host github :repo "danielfm/spotify.el"))

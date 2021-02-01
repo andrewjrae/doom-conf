@@ -88,6 +88,9 @@
    '((R . t)
      (latex . t))))
 
+(when (featurep! :checkers (spell +aspell))
+  (setq ispell-dictionary "canadian"))
+
 ;; Make flycheck slow things down less
 (after! flycheck
   (setq flycheck-check-syntax-automatically '(save idle-change mode-enabled))
@@ -100,11 +103,6 @@
 (require 'spotify)
 
 (setq! evil-ex-substitute-global t)
-
-(add-hook! 'c-mode-common-hook
-  (setq c-tab-always-indent nil)
-  (map! :leader
-        :desc "Toggle between header and source file" "b o" 'ff-find-other-file))
 
 (after! evil
   (require 'evil-textobj-anyblock)

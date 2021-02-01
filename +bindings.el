@@ -26,6 +26,11 @@
       ;; Replace the old M-j
       :n "C-j" #'newline-and-indent)
 
+(add-hook! 'c-mode-common-hook
+  (setq c-tab-always-indent nil)
+  (map! :leader
+        :desc "Toggle between header and source file" "b o" 'ff-find-other-file))
+
 ;; Make movement keys work on visual lines
 (define-key evil-normal-state-map (kbd "<remap> <evil-next-line>") 'evil-next-visual-line)
 (define-key evil-normal-state-map (kbd "<remap> <evil-previous-line>") 'evil-previous-visual-line)
