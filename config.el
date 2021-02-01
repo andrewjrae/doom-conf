@@ -68,7 +68,25 @@
         :n "M-k" #'org-metaup)
   ;; Make inline images a reasonable size in org-mode
   (setq org-hide-emphasis-markers t)
-  (setq org-image-actual-width 400))
+  (setq org-image-actual-width 400)
+  )
+
+;; Add syntax highlighting to latex exports using minted
+(after! ox-latex
+  (add-to-list 'org-latex-packages-alist '("" "minted"))
+  (setq org-latex-listings 'minted)
+
+  (setq org-latex-pdf-process
+        '("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+          "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+          "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"))
+
+  (setq org-src-fontify-natively t)
+
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((R . t)
+     (latex . t))))
 
 ;; Make flycheck slow things down less
 (after! flycheck
