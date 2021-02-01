@@ -56,9 +56,11 @@
 (after! spotify
   (map! :leader
         (:prefix-map ("j" . "jams")
+         :desc "Add to playlist" "a" #'spotify-track-add
+         :desc "Create new playlist" "c" #'spotify-create-playlist
+         :desc "Select device" "d" #'spotify-select-device
          :desc "Toggle play" "j" #'spotify-toggle-play
          :desc "My playlists" "p" #'spotify-my-playlists
-         :desc "Select device" "d" #'spotify-select-device
          (:prefix-map ("t" . "spotify-toggle")
           :desc "Toggle shuffle" "s" #'spotify-toggle-shuffle
           :desc "Toggle play" "p" #'spotify-toggle-play
