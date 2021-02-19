@@ -5,18 +5,11 @@
 ;; Adds Ctrl-S for saving / exiting vim modes, cause I just can't break that habit ;)
 (map! :n "C-s" #'save-buffer
       :ivr "C-s" (lambda () (interactive) (evil-normal-state) (save-buffer)))
-;; Better search and replace
 (map! :leader
-      :desc "Search and replace" "s r" #'query-replace-regexp)
-;; Remapping the old SPC-s-r
-(map! :leader
-      :desc "Jump to mark" "s m" #'counsel-evil-marks)
-(map! :leader
-      :desc "Jump to bookmark" "s M" #'bookmark-jump)
-;; Better switching between workspaces
-(map! :leader
-      :desc "Switch to last workspace" "TAB l" #'+workspace/other)
-(map! :leader
+      :desc "Jump to mark" "s m" #'counsel-evil-marks
+      :desc "Jump to bookmark" "s M" #'bookmark-jump
+      ;; Better switching between workspaces
+      :desc "Switch to last workspace" "TAB l" #'+workspace/other
       :desc "Load workspace from file" "TAB L" #'+workspace/other)
 ;; Drag text with meta (for some reason evil didn't cover this)
 (map! :n "M-h" #'drag-stuff-left
@@ -25,6 +18,9 @@
       :n "M-l" #'drag-stuff-right
       ;; Replace the old M-j
       :n "C-j" #'newline-and-indent)
+;; My xmonad like window nav
+(map! :g "C-s-n" #'evil-window-next
+      :g "C-s-a" #'evil-window-prev)
 
 (add-hook! 'c-mode-common-hook
   (setq c-tab-always-indent nil)
