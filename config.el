@@ -67,9 +67,26 @@
         :n "M-j" #'org-metadown
         :n "M-k" #'org-metaup)
   ;; Make inline images a reasonable size in org-mode
-  (setq org-hide-emphasis-markers t)
+  (setq org-hide-emphasis-markers nil)
   (setq org-image-actual-width 400)
-  )
+  ;; Set todo keywords
+  (setq org-todo-keywords
+        '((sequence
+           "TODO(t)"
+           "TEST(x)"
+           "STRT(s)"
+           "WAIT(w)"
+           "|"
+           "DONE(d)"
+           "KILL(k)")
+          (sequence
+           "[ ](T)"
+           "[-](S)"
+           "[?](W)"
+           "|"
+           "[X](D)")))
+  (add-to-list 'org-todo-keyword-faces
+               `("TEST" . (:foreground ,(doom-color 'red) :weight bold))))
 
 ;; Add syntax highlighting to latex exports using minted
 (after! ox-latex
