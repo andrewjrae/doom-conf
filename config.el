@@ -136,5 +136,6 @@
       verilog-indent-level-behavioral  2
       verilog-indent-level-directive   2
       verilog-case-indent              2
-      verilog-auto-newline             nil
-      )
+      verilog-auto-newline             nil)
+
+(add-hook! 'verilog-mode-hook :local #'electric-pair-mode)
