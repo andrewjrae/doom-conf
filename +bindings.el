@@ -8,6 +8,7 @@
 (map! :leader
       :desc "Jump to mark" "s m" #'counsel-evil-marks
       :desc "Jump to bookmark" "s M" #'bookmark-jump
+      :desc "Compile" "c c" #'+ivy/project-compile
       ;; Better switching between workspaces
       :desc "Switch to last workspace" "TAB l" #'+workspace/other
       :desc "Load workspace from file" "TAB L" #'+workspace/other)

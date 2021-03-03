@@ -62,7 +62,11 @@
 
 ;; Org-mode related patches
 ;; Makes org a little more vim like (no arrow keys required)
+(setq org-attach-screenshot-dirfunction (lambda () (progn "images")))
 (after! org
+  (use-package! org-attach-screenshot
+    :config (setq org-attach-dir-relative t
+                  org-attach-screenshot-command-line "escrotum -s %f"))
   (map! :map org-mode-map
         :n "M-j" #'org-metadown
         :n "M-k" #'org-metaup)

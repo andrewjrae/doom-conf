@@ -51,6 +51,7 @@
 (package! evil-indent-plus)
 
 ;; (package! ox-latex)
+(package! org-attach-screenshot)
 
 (when (featurep! :tools lsp)
   (package! lsp-ui)
