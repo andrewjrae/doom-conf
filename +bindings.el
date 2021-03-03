@@ -19,8 +19,11 @@
       ;; Replace the old M-j
       :n "C-j" #'newline-and-indent)
 ;; My xmonad like window nav
-(map! :g "C-s-n" #'evil-window-next
-      :g "C-s-a" #'evil-window-prev)
+(map! :g "M-n" #'evil-window-next
+      :g "M-a" #'evil-window-prev)
+;; Dedicated copy paste key actions
+(map! :g "<XF86Copy>" #'evil-yank
+      :g "<XF86Paste>" #'evil-paste-after)
 
 (add-hook! 'c-mode-common-hook
   (setq c-tab-always-indent nil)
