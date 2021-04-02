@@ -5,6 +5,9 @@
 ;; Adds Ctrl-S for saving / exiting vim modes, cause I just can't break that habit ;)
 (map! :n "C-s" #'save-buffer
       :ivr "C-s" (lambda () (interactive) (evil-normal-state) (save-buffer)))
+(add-hook! 'company-mode-hook
+  (map! :map company-active-map
+        :g "C-s" (lambda () (interactive) (company-abort) (evil-normal-state) (save-buffer))))
 (map! :leader
       :desc "Jump to mark" "s m" #'counsel-evil-marks
       :desc "Jump to bookmark" "s M" #'bookmark-jump
@@ -20,11 +23,16 @@
       ;; Replace the old M-j
       :n "C-j" #'newline-and-indent)
 ;; My xmonad like window nav
-(map! :g "M-n" #'evil-window-next
-      :g "M-a" #'evil-window-prev)
+(map! :g "C-s-n" #'evil-window-next
+      :g "C-s-j" #'evil-window-next
+      :g "C-s-a" #'evil-window-prev
+      :g "C-s-k" #'evil-window-prev)
 ;; Dedicated copy paste key actions
 (map! :g "<XF86Copy>" #'evil-yank
-      :g "<XF86Paste>" #'evil-paste-after)
+      :nvr "<XF86Paste>" #'evil-paste-after
+      :i "<XF86Paste>" #'evil-paste-before)
+;; Multi-edit
+(map! :g "M-a" #'evil-multiedit-match-all)
 
 (add-hook! 'c-mode-common-hook
   (setq c-tab-always-indent nil)

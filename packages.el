@@ -52,12 +52,27 @@
 
 ;; (package! ox-latex)
 (package! org-attach-screenshot)
+(package! emacs-everywhere)
+;; (package! calctex :recipe (:host github :repo "johnbcoughlin/calctex"
+;;                            :files ("*.el" "calctex/*.el" "calctex-contrib/*.el" "org-calctex/*.el" "vendor"))
+;;   :pin "7fa2673c64...")
 
 (when (featurep! :tools lsp)
   (package! lsp-ui)
-  (package! company-lsp))
+  ;;(package! company-lsp))
+  )
+
+;; suupeerr
+(package! org-super-agenda)
+
+;; Org prettiness
+(package! mixed-pitch)
+(package! org-fragtog)
+(package! org-appear :recipe (:host github :repo "awth13/org-appear"))
+(package! org-pretty-tags)
 
 ;; Spotify
 (package! oauth2)
 (package! spotify
-  :recipe (:host github :repo "danielfm/spotify.el"))
+  :recipe (:host github :repo "danielfm/spotify.el")
+  :pin "f32bb17c6d0c83100724037dd003dc2372cf79b9")

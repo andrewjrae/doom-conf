@@ -19,7 +19,10 @@
 ;;
 ;; They all accept either a font-spec, font string ("Input Mono-12"), or xlfd
 ;; font string. You generally only need these two:
-(setq doom-font (font-spec :family "monospace" :size 14))
+;; (setq doom-font (font-spec :family "FiraCode Nerd Font Mono" :size 14))
+(setq doom-font (font-spec :family "Fira Code" :size 14)
+      doom-big-font (font-spec :family "Fira Code" :size 20)
+      doom-variable-pitch-font (font-spec :family "Fira Sans Light"))
 
 ;; (custom-set-faces! '(font-lock-comment-face t))
 
@@ -36,7 +39,6 @@
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
 ;; (setq display-line-numbers-type t)
 (setq display-line-numbers-type 'relative)
-
 
 ;; Here are some additional functions/macros that could help you configure Doom:
 ;;
@@ -59,6 +61,14 @@
 (load! "+bindings")
 ;; Load git hidden secrets
 (load! "+secrets")
+;; Load org prettiness
+(load! "+org-style")
+;; Load hooks
+(load! "+hooks")
+
+;; (after! solaire-mode
+;;   (advice-remove #'org-format-latex #'solaire-mode--org-latex-bg)
+;;   (advice-remove #'org-create-formula-image #'solaire-mode--org-latex-bg))
 
 ;; Org-mode related patches
 ;; Makes org a little more vim like (no arrow keys required)
@@ -70,8 +80,25 @@
   (map! :map org-mode-map
         :n "M-j" #'org-metadown
         :n "M-k" #'org-metaup)
+  (add-to-list 'org-file-apps '("\\.pdf\\'" . emacs))
+  (setq org-startup-with-latex-preview nil)
+  (setq org-format-latex-options
+        (plist-put org-format-latex-options :background "Transparent"))
+  (setq org-highlight-latex-and-related '(native script entities))
+  (add-to-list 'org-src-block-faces '("latex" (:inherit default :extend t)))
+  (setq org-format-latex-options
+        (plist-put org-format-latex-options :scale 1.2))
+  ;; better emphasis
+  (use-package! org-appear
+    :hook (org-mode . org-appear-mode)
+    :config
+    (setq org-appear-autoemphasis t
+          org-appear-autosubmarkers t
+          org-appear-autolinks nil)
+    ;; for proper first-time setup, `org-appear--set-fragments'
+    ;; needs to be run after other hooks have acted.
+    (run-at-time nil nil #'org-appear--set-fragments))
   ;; Make inline images a reasonable size in org-mode
-  (setq org-hide-emphasis-markers nil)
   (setq org-image-actual-width 400)
   ;; Set todo keywords
   (setq org-todo-keywords
@@ -92,6 +119,9 @@
   (add-to-list 'org-todo-keyword-faces
                `("TEST" . (:foreground ,(doom-color 'red) :weight bold))))
 
+(use-package! org-super-agenda
+  :commands (org-super-agenda-mode))
+
 ;; Add syntax highlighting to latex exports using minted
 (after! ox-latex
   (add-to-list 'org-latex-packages-alist '("" "minted"))
@@ -103,7 +133,6 @@
           "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"))
 
   (setq org-src-fontify-natively t)
-
   (org-babel-do-load-languages
    'org-babel-load-languages
    '((R . t)
@@ -117,11 +146,21 @@
   (setq flycheck-check-syntax-automatically '(save idle-change mode-enabled))
   (setq flycheck-idle-change-delay 2))
 
-(require 'dap-cpptools)
-(require 'company-lsp)
+(use-package mixed-pitch
+  :hook (org-mode . mixed-pitch-mode)
+  :config
+  (setq mixed-pitch-set-height t)
+  (set-face-attribute 'variable-pitch nil :height 1.12))
+
+(use-package! org-fragtog
+  :hook (org-mode . org-fragtog-mode))
+
+(use-package! dap-cpptools)
 
 ;; Spotify controller
-(require 'spotify)
+(use-package! spotify)
+
+(use-package! emacs-everywhere)
 
 (setq! evil-ex-substitute-global t)
 
@@ -158,5 +197,3 @@
       verilog-indent-level-directive   2
       verilog-case-indent              2
       verilog-auto-newline             nil)
-
-(add-hook! 'verilog-mode-hook :local #'electric-pair-mode)
