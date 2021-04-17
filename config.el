@@ -158,7 +158,7 @@
 (use-package! dap-cpptools)
 
 ;; Spotify controller
-(use-package! spotify)
+(use-package! smudge)
 
 (use-package! emacs-everywhere)
 

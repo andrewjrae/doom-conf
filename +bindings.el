@@ -65,20 +65,19 @@
          :desc "List breakpoints" "l" #'dap-hydra/dap-ui-breakpoints
          :desc "Toggle breakpoint" "b" #'dap-breakpoint-toggle)))
 
-;; Spotify bindings
-(after! spotify
+;; Smudge bindings
+(after! smudge
   (map! :leader
         (:prefix-map ("j" . "jams")
-         :desc "Add to playlist" "a" #'spotify-track-add
-         :desc "Create new playlist" "c" #'spotify-create-playlist
-         :desc "Select device" "d" #'spotify-select-device
-         :desc "Toggle play" "j" #'spotify-toggle-play
-         :desc "My playlists" "p" #'spotify-my-playlists
-         (:prefix-map ("t" . "spotify-toggle")
-          :desc "Toggle shuffle" "s" #'spotify-toggle-shuffle
-          :desc "Toggle play" "p" #'spotify-toggle-play
-          :desc "Toggle repeat" "r" #'spotify-toggle-repeat)
-         (:prefix-map ("s" . "spotify-search")
-          :desc "Search for song" "s" #'spotify-track-search
-          :desc "Search for playlist" "p" #'spotify-playlist-search)
-         :desc "Toggle breakpoint" "b" #'dap-breakpoint-toggle)))
+         :desc "Add to playlist" "a" #'smudge-track-add
+         :desc "Create new playlist" "c" #'smudge-create-playlist
+         :desc "Select device" "d" #'smudge-select-device
+         :desc "Toggle play" "j" #'smudge-controller-toggle-play
+         :desc "My playlists" "p" #'smudge-my-playlists
+         (:prefix-map ("t" . "smudge-toggle")
+          :desc "Toggle shuffle" "s" #'smudge-controller-toggle-shuffle
+          :desc "Toggle play" "p" #'smudge-controller-toggle-play
+          :desc "Toggle repeat" "r" #'smudge-controller-toggle-repeat)
+         (:prefix-map ("s" . "smudge-search")
+          :desc "Search for song" "s" #'smudge-track-search
+          :desc "Search for playlist" "p" #'smudge-playlist-search))))

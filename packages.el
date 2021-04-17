@@ -72,7 +72,9 @@
 (package! org-pretty-tags)
 
 ;; Spotify
+;; Smudge (spotify controller)
 (package! oauth2)
-(package! spotify
-  :recipe (:host github :repo "danielfm/spotify.el")
-  :pin "f32bb17c6d0c83100724037dd003dc2372cf79b9")
+(package! smudge
+  :recipe (:host github
+           :repo "danielfm/smudge"
+           :files ("*.el")))
