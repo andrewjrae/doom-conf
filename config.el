@@ -122,6 +122,8 @@
 (use-package! org-super-agenda
   :commands (org-super-agenda-mode))
 
+(use-package! org-pandoc-import :after org)
+
 ;; Add syntax highlighting to latex exports using minted
 (after! ox-latex
   (add-to-list 'org-latex-packages-alist '("" "minted"))

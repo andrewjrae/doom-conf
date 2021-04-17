@@ -72,6 +72,10 @@
 (package! org-pretty-tags)
 
 ;; Spotify
+(package! org-pandoc-import
+  :recipe (:host github
+           :repo "tecosaur/org-pandoc-import"
+           :files ("*.el" "filters" "preprocessors")))
 ;; Smudge (spotify controller)
 (package! oauth2)
 (package! smudge

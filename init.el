@@ -141,6 +141,7 @@
        ;;ocaml             ; an objective camel
        (org +pretty        ; organize your plain life in plain text
             +dragndrop
+            +pandoc
             +jupyter
             +gnuplot)
        ;;perl              ; write code no one else can comprehend
