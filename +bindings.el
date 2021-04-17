@@ -81,3 +81,20 @@
          (:prefix-map ("s" . "smudge-search")
           :desc "Search for song" "s" #'smudge-track-search
           :desc "Search for playlist" "p" #'smudge-playlist-search))))
+
+;; continuous scrolling
+(after! pdf-continuous-scroll-mode
+  (map! (:mode pdf-continuous-scroll-mode
+          :n "j" #'pdf-continuous-scroll-forward
+          :n "<mouse-5>" #'pdf-cs-mouse-scroll-forward
+          :n "k" #'pdf-continuous-scroll-backward
+          :n "<mouse-4>" #'pdf-cs-mouse-scroll-backward
+          :n "J" #'pdf-continuous-next-page
+          :n "K" #'pdf-continuous-previous-page
+          :n "g t" #'pdf-cscroll-view-goto-page
+          :n "g g" #'pdf-cscroll-first-page
+          :n "G" #'pdf-cscroll-last-page
+          :n "M" #'pdf-cscroll-toggle-mode-line
+          :n "q" #'pdf-cscroll-kill-buffer-and-windows
+          :n "l" #'pdf-cscroll-image-forward-hscroll
+          :n "h" #'pdf-cscroll-image-backward-hscroll)))

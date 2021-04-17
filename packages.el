@@ -71,11 +71,15 @@
 (package! org-appear :recipe (:host github :repo "awth13/org-appear"))
 (package! org-pretty-tags)
 
-;; Spotify
+(package! pdf-continuous-scroll-mode
+  :recipe (:host github
+           :repo "dalanicolai/pdf-continuous-scroll-mode.el"))
+
 (package! org-pandoc-import
   :recipe (:host github
            :repo "tecosaur/org-pandoc-import"
            :files ("*.el" "filters" "preprocessors")))
+
 ;; Smudge (spotify controller)
 (package! oauth2)
 (package! smudge

@@ -23,3 +23,9 @@
       (org--latex-preview-region (point-min) (point-max)))))
 
 (add-hook! 'verilog-mode-hook :local #'electric-pair-mode)
+
+(setq-hook! 'pdf-continuous-scroll-mode-hook
+  pdf-view-display-size 'fit-width)
+;; (add-hook! 'pdf-continuous-scroll-mode-hook :local
+;;            #'pdf-cscroll-toggle-mode-line
+;;            (setq! pdf-view-display-size 'fit-width))

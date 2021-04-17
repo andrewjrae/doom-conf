@@ -159,6 +159,11 @@
 
 (use-package! dap-cpptools)
 
+;; continuous scrolling in pdf tools
+(use-package! pdf-continuous-scroll-mode
+  ;; :hook (pdf-view-mode . pdf-continuous-scroll-mode)
+  :after pdf-tools)
+
 ;; Spotify controller
 (use-package! smudge)
 
