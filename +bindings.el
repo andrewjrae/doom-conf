@@ -27,10 +27,18 @@
       :g "C-s-j" #'evil-window-next
       :g "C-s-a" #'evil-window-prev
       :g "C-s-k" #'evil-window-prev)
+(map! :g "C-H-s-n" #'evil-window-next
+      :g "C-H-s-j" #'evil-window-next
+      :g "C-H-s-a" #'evil-window-prev
+      :g "C-H-s-k" #'evil-window-prev)
 ;; Dedicated copy paste key actions
 (map! :g "<XF86Copy>" #'evil-yank
       :nvr "<XF86Paste>" #'evil-paste-after
       :i "<XF86Paste>" #'evil-paste-before)
+;; Emacs 28 (or native comp?) has some fucked up keycodes??
+(map! :g "<269025111>" #'evil-yank
+      :nvr "<269025133>" #'evil-paste-after
+      :i "<269025133>" #'evil-paste-before)
 ;; Multi-edit
 (map! :g "M-a" #'evil-multiedit-match-all)
 
