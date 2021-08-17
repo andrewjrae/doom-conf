@@ -29,3 +29,15 @@
 ;; (add-hook! 'pdf-continuous-scroll-mode-hook :local
 ;;            #'pdf-cscroll-toggle-mode-line
 ;;            (setq! pdf-view-display-size 'fit-width))
+
+(add-hook! 'csv-mode-hook
+           #'csv-align-mode
+           #'toggle-truncate-lines)
+
+(defun ajr/start-org-presentation ()
+  (display-line-numbers-mode 0)
+  (hide-mode-line-mode 1)
+  )
+
+(add-hook! 'org-tree-slide-play-hook
+           #'ajr/start-org-presentation)

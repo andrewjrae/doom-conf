@@ -62,6 +62,13 @@
   ;;(package! company-lsp))
   )
 
+;; tree sitter
+;; (package! org-present)
+
+;; tree sitter
+(package! tree-sitter)
+(package! tree-sitter-langs)
+
 ;; suupeerr
 (package! org-super-agenda)
 
@@ -71,9 +78,11 @@
 (package! org-appear :recipe (:host github :repo "awth13/org-appear"))
 (package! org-pretty-tags)
 
-(package! pdf-continuous-scroll-mode
-  :recipe (:host github
-           :repo "dalanicolai/pdf-continuous-scroll-mode.el"))
+(package! virtualenvwrapper)
+
+;; (package! pdf-continuous-scroll-mode
+;;   :recipe (:host github
+;;            :repo "dalanicolai/pdf-continuous-scroll-mode.el"))
 
 (package! org-pandoc-import
   :recipe (:host github

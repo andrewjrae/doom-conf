@@ -106,3 +106,16 @@
           :n "q" #'pdf-cscroll-kill-buffer-and-windows
           :n "l" #'pdf-cscroll-image-forward-hscroll
           :n "h" #'pdf-cscroll-image-backward-hscroll)))
+
+(after! tex
+  (map!
+   :map LaTeX-mode-map
+   :localleader
+   :desc "View" "v" #'TeX-view
+   :desc "Toggle TeX-Fold" "f" #'TeX-fold-mode
+   :desc "Compile" "c" (cmd! () (TeX-command "LatexMk" #'TeX-master-file ))
+   :desc "Show errors" "e" #'TeX-next-error ))
+
+(map! :map org-tree-slide-mode-map
+        :n "n" #'org-tree-slide-move-next-tree
+        :n "DEL"  #'org-tree-slide-move-previous-tree)
