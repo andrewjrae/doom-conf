@@ -8,8 +8,6 @@
 ;; sync up theme with org stuff
 (add-hook! 'doom-load-theme-hook
   (defun +org-refresh-test-colour ()
-      (add-to-list 'org-todo-keyword-faces
-               `("TEST" . (:foreground ,(doom-color 'red) :weight bold)))
       (set-face-foreground 'line-number (doom-darken 'violet 0.25))
       (set-face-foreground 'line-number-current-line (doom-darken 'magenta 0.25))))
 
