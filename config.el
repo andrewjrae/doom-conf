@@ -68,6 +68,10 @@
 ;; Load hooks
 (load! "+hooks")
 
+;; transparency, should consider just letting picom do this...
+(set-frame-parameter (selected-frame) 'alpha '(97 . 92))
+(add-to-list 'default-frame-alist '(alpha . (97 . 92)))
+
 (when (featurep! :checkers (spell +aspell))
   (setq ispell-dictionary "canadian"))
 
@@ -139,3 +143,9 @@
       verilog-indent-level-directive   2
       verilog-case-indent              2
       verilog-auto-newline             nil)
+
+(when (featurep! :completion (vertico)
+                 (after! consult
+                   (consult-customize consult-theme
+                                      :preview-key
+                                      (list nil)))))
