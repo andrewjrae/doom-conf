@@ -23,14 +23,11 @@
       ;; Replace the old M-j
       :n "C-j" #'newline-and-indent)
 ;; My xmonad like window nav
-(map! :g "C-s-n" #'evil-window-next
-      :g "C-s-j" #'evil-window-next
-      :g "C-s-a" #'evil-window-prev
-      :g "C-s-k" #'evil-window-prev)
-(map! :g "C-H-s-n" #'evil-window-next
-      :g "C-H-s-j" #'evil-window-next
-      :g "C-H-s-a" #'evil-window-prev
-      :g "C-H-s-k" #'evil-window-prev)
+(map! :g "M-s-n" #'evil-window-next
+      :g "M-s-j" #'evil-window-next
+      :g "M-s-a" #'evil-window-prev
+      :g "M-s-k" #'evil-window-prev)
+(map! :leader :desc "Previous window" "DEL" #'evil-window-prev)
 ;; Dedicated copy paste key actions
 (map! :g "<XF86Copy>" #'evil-yank
       :nvr "<XF86Paste>" #'evil-paste-after
@@ -106,6 +103,11 @@
           :n "q" #'pdf-cscroll-kill-buffer-and-windows
           :n "l" #'pdf-cscroll-image-forward-hscroll
           :n "h" #'pdf-cscroll-image-backward-hscroll)))
+
+(after! org
+  (map!
+   :map org-mode-map
+   :n "M-RET" (lambda () (interactive) (org-meta-return) (evil-insert-state) )))
 
 (after! tex
   (map!

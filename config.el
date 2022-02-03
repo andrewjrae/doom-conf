@@ -29,7 +29,7 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-theme 'doom-one-light)
+(setq doom-theme 'doom-one)
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
@@ -68,10 +68,6 @@
 ;; Load hooks
 (load! "+hooks")
 
-;; transparency, should consider just letting picom do this...
-(set-frame-parameter (selected-frame) 'alpha '(97 . 92))
-(add-to-list 'default-frame-alist '(alpha . (97 . 92)))
-
 (when (featurep! :checkers (spell +aspell))
   (setq ispell-dictionary "canadian"))
 
@@ -106,6 +102,18 @@
 (use-package! emacs-everywhere)
 
 (setq! evil-ex-substitute-global t)
+
+(after! lsp
+  (lsp-register-client
+   (make-lsp-client :new-connection (lsp-tramp-connection "clangd")
+                    :major-modes '(c-mode c++-mode)
+                    :remote? t
+                    :server-id 'clangd-remote))
+  )
+(after! tramp
+  (custom-set-variables  '(tramp-remote-path
+                           (quote (tramp-own-remote-path))))
+  )
 
 (after! evil
   (require 'evil-textobj-anyblock)

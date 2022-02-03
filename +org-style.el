@@ -10,6 +10,7 @@
   '(outline-8 :weight semi-bold)
   '(outline-9 :weight semi-bold))
 
+(setq org-pretty-entities-include-sub-superscripts nil)
 
 (custom-set-faces!
   '(org-document-title :height 1.2))
