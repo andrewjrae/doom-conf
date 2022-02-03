@@ -95,3 +95,20 @@
   :recipe (:host github
            :repo "danielfm/smudge"
            :files ("*.el")))
+
+(package! org
+  :recipe (:host github :repo "andrewjrae/org-mode" :branch "fix-engraved-latex")
+  :pin "5d356b773b97ae4fc269ed9e552e7f173e3d9871")
+
+(package! engrave-faces
+  :recipe (:host github :repo "tecosaur/engrave-faces"))
+
+(package! ox-chameleon
+  :recipe (:host github :repo "tecosaur/ox-chameleon"))
+
+;; (package! gitconfig-mode
+;;           :recipe (:host github :repo "magit/git-modes"
+;;                          :files ("gitconfig-mode.el")))
+;; (package! gitignore-mode
+;;           :recipe (:host github :repo "magit/git-modes"
+;;                          :files ("gitignore-mode.el")))

@@ -15,7 +15,7 @@
   (setq org-highlight-latex-and-related '(native script entities))
   (add-to-list 'org-src-block-faces '("latex" (:inherit default :extend t)))
   (setq org-format-latex-options
-        (plist-put org-format-latex-options :scale 1.2))
+        (plist-put org-format-latex-options :scale 1.0))
   ;; better emphasis
   (use-package! org-appear
     :hook (org-mode . org-appear-mode)
@@ -61,67 +61,38 @@
 ;; Add syntax highlighting to latex exports using minted
 (after! ox-latex
   (add-to-list 'org-latex-packages-alist '("" "minted"))
-  (setq org-latex-listings 'minted)
+  (add-to-list 'org-latex-packages-alist '("" "enumitem"))
+  (add-to-list 'org-latex-packages-alist '("" "xcolor"))
+  (setq org-latex-listings 'engraved)
+  (setq org-latex-pdf-process '("latexmk -f -pdf -%latex -shell-escape -interaction=nonstopmode -output-directory=%o %f"))
+  ;; (setq org-latex-pdf-process
+  ;;       '("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+  ;;         "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+  ;;         "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"))
+  (add-to-list 'org-latex-classes
+               '("koma-article" "\\documentclass[parskip=full-]{scrartcl}"
+                 ("\\section{%s}" . "\\section*{%s}")
+                 ("\\subsection{%s}" . "\\subsection*{%s}")
+                 ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+                 ("\\paragraph{%s}" . "\\paragraph*{%s}")
+                 ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
 
-  (setq org-latex-pdf-process
-        '("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
-          "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
-          "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"))
+  (setq org-latex-default-class "koma-article")
 
   (setq org-src-fontify-natively t)
+
+  (add-to-list 'org-src-lang-modes '("python" . python))
+
   (org-babel-do-load-languages
    'org-babel-load-languages
    '((R . t)
      (latex . t))))
 
-;; (use-package! org-fragtog
-;;   :hook (org-mode  org-fragtog-mode))
+(use-package! engrave-faces
+  :after ox-latex)
 
-;; org present
-;; (defun ajr/org-present-prepare-slide ()
-;;   (org-overview)
-;;   (org-show-entry)
-;;   (org-show-children))
+(use-package! engrave-faces-latex
+  :after ox-latex)
 
-;; (defun ajr/org-present-hook ()
-;;   ;; (doom-big-font-mode 1)
-;;   (setq-local face-remapping-alist '((default (:height 1.5) variable-pitch)
-;;                                      (header-line (:height 4.5) variable-pitch)
-;;                                      (org-code (:height 1.25) org-code)
-;;                                      (org-verbatim (:height 1.25) org-verbatim)
-;;                                      (org-block (:height 1.25) org-block)
-;;                                      (org-block-begin-line (:height 0.7) org-block)))
-;;   (setq header-line-format " ")
-;;   (org-display-inline-images)
-;;   (ajr/org-present-prepare-slide))
-
-;; (defun ajr/org-present-quit-hook ()
-;;   ;; (doom-big-font-mode 0)
-;;   (setq-local face-remapping-alist '((default variable-pitch default)))
-;;   (setq header-line-format nil)
-;;   (org-present-small)
-;;   (org-remove-inline-images))
-
-;; (defun ajr/org-present-prev ()
-;;   (interactive)
-;;   (org-present-prev)
-;;   (ajr/org-present-prepare-slide))
-
-;; (defun ajr/org-present-next ()
-;;   (interactive)
-;;   (org-present-next)
-;;   (ajr/org-present-prepare-slide))
-
-;; (use-package! org-present
-;;   :hook ((org-present-mode . ajr/org-present-hook)
-;;          (org-present-mode-quit . ajr/org-present-quit-hook)))
-;; (map! :map org-present-mode-keymap
-;; ;; (map! :mode org-present-mode
-;;       :n "s" #'ajr/org-present-next
-;;       :n "t" #'ajr/org-present-prev
-;;       :g "C-SPC" #'ajr/org-present-next
-;;       :g "C-e" #'ajr/org-present-prev)
-;;       ;; :n "s" #'ajr/org-present-next
-;;       ;; :n "t" #'ajr/org-present-prev
-;;       ;; :g "C-SPC" #'ajr/org-present-next
-;;       ;; :g "C-e" #'ajr/org-present-prev)
+(use-package! ox-chameleon
+  :after ox)
