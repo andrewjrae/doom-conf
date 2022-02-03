@@ -5,8 +5,10 @@
 ;;   org-format-latex-options
 ;;         (plist-put org-format-latex-options :scale 2.0))
 
+;; all themes listed here should have a representation in alacritty
 (setq ajr/alacritty-themes (list 'doom-one 'doom-one-light))
 (defun ajr/change-alacritty-theme ()
+  ;; if statement for both theme
   (if (member doom-theme ajr/alacritty-themes)
       (let ((sed-cmd
              (format
@@ -14,8 +16,17 @@
               doom-theme)))
         (shell-command sed-cmd))))
 
+(setq ajr/dark-themes (list 'doom-one))
+(setq ajr/light-themes (list 'doom-one-light))
+(defun ajr/change-system-themes ()
+  (ajr/change-alacritty-theme)
+  (if (member doom-theme ajr/dark-themes)
+      (shell-command "spicetify config color_scheme blue-dark && spicetify apply"))
+  (if (member doom-theme ajr/light-themes)
+      (shell-command "spicetify config color_scheme orange-light && spicetify apply")))
+
 (add-hook! 'doom-load-theme-hook
-           'ajr/change-alacritty-theme)
+           'ajr/change-system-themes)
 
 (add-hook! 'doom-load-theme-hook
   (defun ajr/change-line-number-colors ()
