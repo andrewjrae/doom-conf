@@ -58,9 +58,8 @@
     :config
     (ox-extras-activate '(latex-header-blocks ignore-headlines))))
 
-;; Add syntax highlighting to latex exports using minted
 (after! ox-latex
-  (add-to-list 'org-latex-packages-alist '("" "minted"))
+  (add-to-list 'org-latex-packages-alist '("" "svg"))
   (add-to-list 'org-latex-packages-alist '("" "enumitem"))
   (add-to-list 'org-latex-packages-alist '("" "xcolor"))
   (setq org-latex-listings 'engraved)

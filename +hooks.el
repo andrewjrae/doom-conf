@@ -56,8 +56,7 @@
 
 (defun ajr/start-org-presentation ()
   (display-line-numbers-mode 0)
-  (hide-mode-line-mode 1)
-  )
+  (hide-mode-line-mode 1))
 
 (add-hook! 'org-tree-slide-play-hook
            #'ajr/start-org-presentation)

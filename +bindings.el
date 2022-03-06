@@ -107,7 +107,10 @@
 (after! org
   (map!
    :map org-mode-map
-   :n "M-RET" (lambda () (interactive) (org-meta-return) (evil-insert-state) )))
+   :n "M-RET" (lambda () (interactive) (org-meta-return) (evil-insert-state))
+   :localleader
+   :desc "Split source block" "-" #'jupyter-org-split-src-block
+   ))
 
 (after! tex
   (map!

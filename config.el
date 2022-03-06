@@ -109,11 +109,16 @@
                     :major-modes '(c-mode c++-mode)
                     :remote? t
                     :server-id 'clangd-remote))
+  (lsp-register-client
+   (make-lsp-client :new-connection (lsp-tramp-connection "pyright")
+                    :major-modes '(python-mode)
+                    :remote? t
+                    :server-id 'pyright-remote))
   )
+
 (after! tramp
   (custom-set-variables  '(tramp-remote-path
-                           (quote (tramp-own-remote-path))))
-  )
+                           (quote (tramp-own-remote-path)))))
 
 (after! evil
   (require 'evil-textobj-anyblock)
