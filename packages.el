@@ -106,6 +106,9 @@
 (package! ox-chameleon
   :recipe (:host github :repo "tecosaur/ox-chameleon"))
 
+(package! good-scroll
+  :recipe (:host github :repo "io12/good-scroll.el"))
+
 ;; (package! gitconfig-mode
 ;;           :recipe (:host github :repo "magit/git-modes"
 ;;                          :files ("gitconfig-mode.el")))

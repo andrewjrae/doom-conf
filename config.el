@@ -157,3 +157,5 @@
                    (consult-customize consult-theme
                                       :preview-key
                                       (list nil)))))
+
+(good-scroll-mode 1)
