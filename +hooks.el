@@ -19,11 +19,11 @@
 (setq ajr/dark-themes (list 'doom-one))
 (setq ajr/light-themes (list 'doom-one-light))
 (defun ajr/change-system-themes ()
-  (ajr/change-alacritty-theme)
-  (if (member doom-theme ajr/dark-themes)
-      (shell-command "spicetify config color_scheme blue-dark && spicetify apply"))
-  (if (member doom-theme ajr/light-themes)
-      (shell-command "spicetify config color_scheme orange-light && spicetify apply")))
+  (ajr/change-alacritty-theme))
+  ;; (if (member doom-theme ajr/dark-themes)
+  ;;     (shell-command "spicetify config color_scheme blue-dark && spicetify apply"))
+  ;; (if (member doom-theme ajr/light-themes)
+  ;;     (shell-command "spicetify config color_scheme orange-light && spicetify apply")))
 
 (add-hook! 'doom-load-theme-hook
            'ajr/change-system-themes)
@@ -33,14 +33,14 @@
       (set-face-foreground 'line-number (doom-darken 'violet 0.25))
       (set-face-foreground 'line-number-current-line (doom-darken 'magenta 0.25))))
 
-(add-hook! 'doom-load-theme-hook
-  (setq org-preview-latex-image-directory
-        (concat doom-cache-dir "org-latex/" (symbol-name doom-theme) "/"))
-  (dolist (buffer (doom-buffers-in-mode 'org-mode (buffer-list)))
-    (with-current-buffer buffer
-      (+org--toggle-inline-images-in-subtree (point-min) (point-max) 'refresh)
-      (org-clear-latex-preview (point-min) (point-max))
-      (org--latex-preview-region (point-min) (point-max)))))
+;; (add-hook! 'doom-load-theme-hook
+;;   (setq org-preview-latex-image-directory
+;;         (concat doom-cache-dir "org-latex/" (symbol-name doom-theme) "/"))
+;;   (dolist (buffer (doom-buffers-in-mode 'org-mode (buffer-list)))
+;;     (with-current-buffer buffer
+;;       (+org--toggle-inline-images-in-subtree (point-min) (point-max) 'refresh)
+;;       (org-clear-latex-preview (point-min) (point-max))
+;;       (org--latex-preview-region (point-min) (point-max)))))
 
 (add-hook! 'verilog-mode-hook :local #'electric-pair-mode)
 

@@ -10,6 +10,7 @@
         :n "M-k" #'org-metaup)
   (add-to-list 'org-file-apps '("\\.pdf\\'" . emacs))
   (setq org-startup-with-latex-preview nil)
+  (setq org-preview-latex-default-process 'dvisvgm)
   (setq org-format-latex-options
         (plist-put org-format-latex-options :background "Transparent"))
   (setq org-highlight-latex-and-related '(native script entities))
@@ -62,6 +63,8 @@
   (add-to-list 'org-latex-packages-alist '("" "svg"))
   (add-to-list 'org-latex-packages-alist '("" "enumitem"))
   (add-to-list 'org-latex-packages-alist '("" "xcolor"))
+  (add-to-list 'org-latex-packages-alist '("" "subcaption"))
+  (add-to-list 'org-latex-packages-alist '("hypcap=true" "caption"))
   (setq org-latex-listings 'engraved)
   (setq org-latex-pdf-process '("latexmk -f -pdf -%latex -shell-escape -interaction=nonstopmode -output-directory=%o %f"))
   ;; (setq org-latex-pdf-process
@@ -69,7 +72,7 @@
   ;;         "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
   ;;         "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"))
   (add-to-list 'org-latex-classes
-               '("koma-article" "\\documentclass[parskip=full-]{scrartcl}"
+               '("koma-article" "\\documentclass[headings=standardclasses,parskip=full-]{scrartcl}"
                  ("\\section{%s}" . "\\section*{%s}")
                  ("\\subsection{%s}" . "\\subsection*{%s}")
                  ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
@@ -95,3 +98,35 @@
 
 (use-package! ox-chameleon
   :after ox)
+
+;; citations
+(use-package! citar
+  :when (featurep! :completion ivy))
+
+(use-package! citeproc
+  :defer t)
+
+(use-package! oc
+  :after org citar
+  :config
+  (require 'ox)
+  (setq org-cite-global-bibliography
+        (let ((paths (or citar-bibliography
+                         (bound-and-true-p bibtex-completion-bibliography))))
+          ;; Always return bibliography paths as list for org-cite.
+          (if (stringp paths) (list paths) paths)))
+  ;; setup export processor; default csl/citeproc-el, with biblatex for latex
+  (setq org-cite-export-processors
+        '((t csl))))
+
+  ;;; Org-cite processors
+(use-package! oc-biblatex
+  :after oc)
+
+(use-package! oc-csl
+  :after oc
+  :config
+  (setq org-cite-csl-styles-dir "~/Zotero/styles"))
+
+(use-package! oc-natbib
+  :after oc)
