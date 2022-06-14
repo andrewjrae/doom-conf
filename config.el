@@ -59,14 +59,21 @@
 
 ;; Load bindings
 (load! "+bindings")
-;; Load git hidden secrets
-(load! "+secrets")
+;; Load git hidden secrets (if present)
+(when (file-exists-p! "+secrets")
+  (load! "+secrets"))
 ;; Load org config
 (load! "+org-config")
 ;; Load org prettiness
 (load! "+org-style")
 ;; Load hooks
 (load! "+hooks")
+
+;; The consult theme loading that comes with vertico doesn't do always call
+;; `doom-reload-theme-hook' so we just use the simple `load-theme' instead
+(when (featurep! :completion vertico)
+  (after! consult
+    (define-key! [remap load-theme] nil)))
 
 (when (featurep! :checkers (spell +aspell))
   (setq ispell-dictionary "canadian"))
@@ -93,8 +100,8 @@
 
 ;; continuous scrolling in pdf tools
 ;; (use-package! pdf-continuous-scroll-mode
-  ;; :hook (pdf-view-mode . pdf-continuous-scroll-mode)
-  ;; :after pdf-tools)
+;; :hook (pdf-view-mode . pdf-continuous-scroll-mode)
+;; :after pdf-tools)
 
 ;; Spotify controller
 (use-package! smudge)
