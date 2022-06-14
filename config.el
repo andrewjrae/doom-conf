@@ -73,6 +73,7 @@
 ;; `doom-reload-theme-hook' so we just use the simple `load-theme' instead
 (when (featurep! :completion vertico)
   (after! consult
+    (setq custom-safe-themes t)
     (define-key! [remap load-theme] nil)))
 
 (when (featurep! :checkers (spell +aspell))
