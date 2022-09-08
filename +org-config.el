@@ -101,7 +101,7 @@
 
 ;; citations
 (use-package! citar
-  :when (featurep! :completion ivy))
+  :when (modulep! :completion ivy))
 
 (use-package! citeproc
   :defer t)

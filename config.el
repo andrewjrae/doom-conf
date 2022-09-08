@@ -71,12 +71,12 @@
 
 ;; The consult theme loading that comes with vertico doesn't do always call
 ;; `doom-reload-theme-hook' so we just use the simple `load-theme' instead
-(when (featurep! :completion vertico)
+(when (modulep! :completion vertico)
   (after! consult
     (setq custom-safe-themes t)
     (define-key! [remap load-theme] nil)))
 
-(when (featurep! :checkers (spell +aspell))
+(when (modulep! :checkers (spell +aspell))
   (setq ispell-dictionary "canadian"))
 
 ;; All the cool kids use tree-sitter
@@ -165,7 +165,7 @@
       verilog-case-indent              2
       verilog-auto-newline             nil)
 
-(when (featurep! :completion (vertico)
+(when (modulep! :completion (vertico)
                  (after! consult
                    (consult-customize consult-theme
                                       :preview-key

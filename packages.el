@@ -57,7 +57,7 @@
 ;;                            :files ("*.el" "calctex/*.el" "calctex-contrib/*.el" "org-calctex/*.el" "vendor"))
 ;;   :pin "7fa2673c64...")
 
-(when (featurep! :tools lsp)
+(when (modulep! :tools lsp)
   (package! lsp-ui)
   ;;(package! company-lsp))
   )
