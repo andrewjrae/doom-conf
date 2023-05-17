@@ -73,6 +73,9 @@
 ;; `doom-reload-theme-hook' so we just use the simple `load-theme' instead
 (when (modulep! :completion vertico)
   (after! consult
+    (consult-customize consult-theme
+                       :preview-key
+                       (list nil))
     (setq custom-safe-themes t)
     (define-key! [remap load-theme] nil)))
 
@@ -111,7 +114,8 @@
 
 (setq! evil-ex-substitute-global t)
 
-(after! lsp
+(after! lsp-mode
+  (setq lsp-imenu-detailed-outline nil)
   (lsp-register-client
    (make-lsp-client :new-connection (lsp-tramp-connection "clangd")
                     :major-modes '(c-mode c++-mode)
@@ -165,10 +169,15 @@
       verilog-case-indent              2
       verilog-auto-newline             nil)
 
-(when (modulep! :completion (vertico)
-                 (after! consult
-                   (consult-customize consult-theme
-                                      :preview-key
-                                      (list nil)))))
-
 (good-scroll-mode 1)
+(unless window-system
+    (global-set-key (kbd "<mouse-4>") 'scroll-down-line)
+    (global-set-key (kbd "<mouse-5>") 'scroll-up-line))
+
+(after! browse-at-remote
+  (setq! browse-at-remote-prefer-symbolic t))
+
+(after! better-jumper
+  (setq! better-jumper-context 'buffer))
+
+(setq! scroll-conservatively 1)

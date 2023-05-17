@@ -60,3 +60,7 @@
 
 (add-hook! 'org-tree-slide-play-hook
            #'ajr/start-org-presentation)
+
+(remove-hook! 'imenu-after-jump-hook #'recenter)
+(add-hook! 'imenu-after-jump-hook
+           (recenter 0))

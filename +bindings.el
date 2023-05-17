@@ -90,19 +90,19 @@
 ;; continuous scrolling
 (after! pdf-continuous-scroll-mode
   (map! (:mode pdf-continuous-scroll-mode
-          :n "j" #'pdf-continuous-scroll-forward
-          :n "<mouse-5>" #'pdf-cs-mouse-scroll-forward
-          :n "k" #'pdf-continuous-scroll-backward
-          :n "<mouse-4>" #'pdf-cs-mouse-scroll-backward
-          :n "J" #'pdf-continuous-next-page
-          :n "K" #'pdf-continuous-previous-page
-          :n "g t" #'pdf-cscroll-view-goto-page
-          :n "g g" #'pdf-cscroll-first-page
-          :n "G" #'pdf-cscroll-last-page
-          :n "M" #'pdf-cscroll-toggle-mode-line
-          :n "q" #'pdf-cscroll-kill-buffer-and-windows
-          :n "l" #'pdf-cscroll-image-forward-hscroll
-          :n "h" #'pdf-cscroll-image-backward-hscroll)))
+         :n "j" #'pdf-continuous-scroll-forward
+         :n "<mouse-5>" #'pdf-cs-mouse-scroll-forward
+         :n "k" #'pdf-continuous-scroll-backward
+         :n "<mouse-4>" #'pdf-cs-mouse-scroll-backward
+         :n "J" #'pdf-continuous-next-page
+         :n "K" #'pdf-continuous-previous-page
+         :n "g t" #'pdf-cscroll-view-goto-page
+         :n "g g" #'pdf-cscroll-first-page
+         :n "G" #'pdf-cscroll-last-page
+         :n "M" #'pdf-cscroll-toggle-mode-line
+         :n "q" #'pdf-cscroll-kill-buffer-and-windows
+         :n "l" #'pdf-cscroll-image-forward-hscroll
+         :n "h" #'pdf-cscroll-image-backward-hscroll)))
 
 (after! org
   (map!
@@ -122,5 +122,32 @@
    :desc "Show errors" "e" #'TeX-next-error ))
 
 (map! :map org-tree-slide-mode-map
-        :n "n" #'org-tree-slide-move-next-tree
-        :n "DEL"  #'org-tree-slide-move-previous-tree)
+      :n "n" #'org-tree-slide-move-next-tree
+      :n "DEL"  #'org-tree-slide-move-previous-tree)
+
+;; the bits I need from term-keys.el
+(setq term-keys/prefix "\033\037")
+(setq term-keys/suffix "\037")
+
+(after! evil
+  (let ((prefix-bind (key-binding term-keys/prefix)))
+    (when prefix-bind
+      (message "term-keys: term-keys/prefix (%S) is already bound to %s (as %s) - unbinding"
+               term-keys/prefix
+               prefix-bind
+               (key-description term-keys/prefix))
+      (global-unset-key term-keys/prefix)))
+
+  (define-key
+    input-decode-map
+    (concat
+     term-keys/prefix
+     "9B"
+     term-keys/suffix)
+    (kbd "<C-i>")))
+
+(when (modulep! :completion vertico)
+  (after! projectile (remove-hook! 'project-find-functions #'project-projectile))
+  (after! evil
+    (map! :leader
+          :desc "Find in project" "SPC" #'project-find-file)))

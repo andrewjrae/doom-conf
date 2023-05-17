@@ -51,6 +51,7 @@
         (?D . 'all-the-icons-green)
         (?E . 'all-the-icons-blue)))
 
+(when (modulep! :ui ligatures)
 (setq +ligatures-extras-in-modes '(org-mode))
 (setq +ligatures-in-modes '(org-mode))
 ;; (setq +ligatures-in-modes nil)
@@ -121,5 +122,6 @@
   :priority_d    "[#D]"
   :priority_e    "[#E]")
 (plist-put +ligatures-extra-symbols :name "⁍")
+)
 
 (setq org-highlight-latex-and-related '(native script entities))
