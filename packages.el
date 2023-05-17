@@ -72,6 +72,8 @@
 ;; suupeerr
 (package! org-super-agenda)
 
+(package! pdf-tools :built-in 'prefer)
+
 ;; Org prettiness
 (package! mixed-pitch)
 (package! org-fragtog)
